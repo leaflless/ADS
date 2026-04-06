@@ -1,21 +1,19 @@
+import java.util.Scanner;
 public class task4 {
-    public static int sumPowers(int b, int n) {
-        if (n == 0) return 1; // b^0 = 1
-        return (int)Math.pow(b, n) + sumPowers(b, n - 1);
+    public static int p(int b, int n) {
+        if (n == 0) return 1;
+        return p(b, n - 1) * b;
     }
-
-    public static String buildFormula(int b, int n) {
-        if (n == 0) return b + "^0";
-        return buildFormula(b, n - 1) + " + " + b + "^" + n;
+    public static int sum(int b, int n) {
+        if (n == 0) return 1;
+        return p(b, n) + sum(b, n - 1);
     }
-
     public static void main(String[] args) {
-        int b = 4;
-        int n = 3;
-
-        String formula = buildFormula(b, n);
-        int result = sumPowers(b, n);
-
-        System.out.println(formula + " = " + result);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("b = ");
+        int b = sc.nextInt();
+        System.out.print("n = ");
+        int n = sc.nextInt();
+        System.out.println(sum(b, n));
     }
 }
